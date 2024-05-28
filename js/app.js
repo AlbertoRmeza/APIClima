@@ -31,6 +31,9 @@ function MostrarError(mensaje){
         `;
 
         contenedor.appendChild(alerta);
+        setTimeout(() =>{
+            alerta.remove();
+        },2000)
     }
    
 }
@@ -45,8 +48,7 @@ function consultarAPI(ciudad,pais){
     .then(result =>{
         LimpiarHtml();
         if (result.cod ==="404"){
-            // MostrarError('Ciudad No encontrada');
-            MostrarErrorCB(LimpiarHtml);
+            MostrarError('Ciudad No encontrada');
         }
         else{
             MostrarClima(result);
@@ -55,15 +57,6 @@ function consultarAPI(ciudad,pais){
     })
     .catch(error =>  console.log(error))
 }
-
-function MostrarErrorCB(callback){
-    setTimeout(function() {
-        MostrarError('Ciudad No encontrada');
-        LimpiarHtml();
-    }, 1000); 
- 
- }
- 
 
 function MostrarClima(datos)
 {
@@ -101,6 +94,9 @@ function MostrarClima(datos)
     contenedorDiv.appendChild(grados_min);
 
     resultado.appendChild(contenedorDiv);
+    setTimeout(() =>{
+        contenedorDiv.remove();
+    },3000)
 }
 
 function LimpiarHtml(){
